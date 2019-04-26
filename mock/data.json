@@ -1,0 +1,90 @@
+{
+  "environments": [
+    {
+      "id": 1001,
+      "name": "DBE",
+      "key": "dbe",
+      "description": "Daily build environment"
+    },
+    {
+      "id": 1002,
+      "name": "Stage",
+      "key": "stage",
+      "description": "Staging"
+    },
+    {
+      "id": 1003,
+      "name": "Production",
+      "key": "prod",
+      "description": "Production environment"
+    }
+  ],
+  "components": [
+    {
+      "id": 2001,
+      "name": "Betbook",
+      "key": "betbook",
+      "description": "React based PM front",
+      "endpoints": [
+        {
+          "environment": 1001,
+          "enabled": true,
+          "url": "http://config-manager.kube.devbl/${env}/${component}/${brand}/features"
+        },
+        {
+          "environment": 1002,
+          "enabled": true,
+          "url": "http://config-manager.betbook.kube.private/${env}/${component}/${brand}/features"
+        },
+        {
+          "environment": 1002,
+          "enabled": false,
+          "url": "https://config-manager.kube.prod/${env}/${component}/${brand}/features"
+        }
+      ],
+      "featureFlags": [4001, 4002]
+    },
+    {
+      "id": 2002,
+      "name": "Native iOS",
+      "key": "native_ios",
+      "description": "Native application for iOS",
+      "endpoints": [],
+      "featureFlags": [4002]
+    }
+  ],
+  "predicates": [
+    {
+      "id": 3001,
+      "name": "Brand",
+      "key": "brand",
+      "type": "enum",
+      "enum": ["com", "cy", "ge"]
+    },
+    {
+      "id": 3002,
+      "name": "User is logged in",
+      "key": "isUserLoggedIn",
+      "type": "bool",
+      "enum": [true, false]
+    }
+  ],
+  "featureFlags": [
+    {
+      "id": 4001,
+      "name": "Sorting algorithm",
+      "key": "sort",
+      "description": "Some description",
+      "type": "enum",
+      "variations": ["quick", "bubble", "merge", "insertion"]
+    },
+    {
+      "id": 4002,
+      "name": "Use geolocation API",
+      "key": "geo",
+      "description": "Some another description",
+      "type": "bool",
+      "variations": [true, false]
+    }
+  ]
+}

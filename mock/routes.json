@@ -1,0 +1,9 @@
+{
+  "/api/environments": "/environments",
+  "/api/environments/*": "/environments/$1",
+  "/api/components": "/components",
+  "/api/components/*": "/components/$1",
+  "/api/featureFlags": "/api/featureFlags",
+  "/api/featureFlags/*": "/api/featureFlags/$1",
+  "/api/flags/:component": "/components/:component/featureFlags"
+}
